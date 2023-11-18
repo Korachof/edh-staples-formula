@@ -17,28 +17,36 @@ black_button = PhotoImage(file="button_images/black.png")
 red_button = PhotoImage(file="button_images/red.png")
 green_button = PhotoImage(file="button_images/green.png")
 
-button1 = Button(window,
+# Configure the row and 5 columns for the MTG buttons. 
+Grid.rowconfigure(window,0,weight=1)
+Grid.columnconfigure(window,0,weight=1)
+Grid.columnconfigure(window,1,weight=1)
+Grid.columnconfigure(window,2,weight=1)
+Grid.columnconfigure(window,3,weight=1)
+Grid.columnconfigure(window,4,weight=1)
+
+# Set the MTG color buttons
+white = Button(window,
                  image=white_button)
-button1.grid(row=0, column=0)
-
-button2 = Button(window,
+blue = Button(window,
                  image=blue_button)
-button2.grid(row=0,
-             column=1)
-
-button3 = Button(window,
+black = Button(window,
                  image=black_button)
-button3.grid(row=0,
-             column=2)
-
-button4 = Button(window,
+red = Button(window,
                  image=red_button)
-button4.grid(row=0,
-             column=3)
-
-button5 = Button(window,
+green = Button(window,
                  image=green_button)
-button5.grid(row=0,
+
+# Set the grid for each of the MTG color buttons
+white.grid(row=0,
+             column=0)
+blue.grid(row=0,
+             column=1)
+black.grid(row=0,
+             column=2)
+red.grid(row=0,
+             column=3)
+green.grid(row=0,
              column=4)
 
 window.mainloop()

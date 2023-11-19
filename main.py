@@ -25,17 +25,83 @@ Grid.columnconfigure(window,2,weight=1)
 Grid.columnconfigure(window,3,weight=1)
 Grid.columnconfigure(window,4,weight=1)
 
+# check button variables
+
+white_var = 0
+blue_var = 0
+black_var = 0
+red_var = 0
+green_var = 0
+
 # Set the MTG color buttons
 white = Button(window,
-                 image=white_button)
+                 image=white_button,
+                 command=lambda: colorChoice("w"))
 blue = Button(window,
-                 image=blue_button)
+                 image=blue_button,
+                 command=lambda: colorChoice("u"))
 black = Button(window,
-                 image=black_button)
+                 image=black_button,
+                 command=lambda: colorChoice("b"))
 red = Button(window,
-                 image=red_button)
+                 image=red_button,
+                 command=lambda: colorChoice("r"))
 green = Button(window,
-                 image=green_button)
+                 image=green_button,
+                 command=lambda: colorChoice("g"))
+
+def colorChoice(choice):
+    global white_var
+    global blue_var
+    global black_var
+    global red_var
+    global green_var
+    
+    if choice == "w":
+        if white_var == 0:
+            white_var += 1
+            white.config(relief=SUNKEN)
+            
+        else:
+            white_var -= 1
+            white.config(relief=RAISED)
+    
+    elif choice == "u":
+        if blue_var == 0:
+            blue_var += 1
+            blue.config(relief=SUNKEN)
+            
+        else:
+            blue_var -= 1
+            blue.config(relief=RAISED)
+            
+    elif choice == "b":
+        if black_var == 0:
+            black_var += 1
+            black.config(relief=SUNKEN)
+            
+        else:
+            black_var -= 1
+            black.config(relief=RAISED)
+            
+    elif choice == "r":
+        if red_var == 0:
+            red_var += 1
+            red.config(relief=SUNKEN)
+            
+        else:
+            red_var -= 1
+            red.config(relief=RAISED)
+           
+    elif choice == "g":
+        if green_var == 0:
+            green_var += 1
+            green.config(relief=SUNKEN)
+            
+        else:
+            green_var -= 1
+            green.config(relief=RAISED)
+    
 
 # Set the grid for each of the MTG color buttons
 white.grid(row=0,

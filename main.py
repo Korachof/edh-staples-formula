@@ -16,9 +16,11 @@ blue_button = PhotoImage(file="button_images/blue.png")
 black_button = PhotoImage(file="button_images/black.png")
 red_button = PhotoImage(file="button_images/red.png")
 green_button = PhotoImage(file="button_images/green.png")
+start_button = PhotoImage(file="button_images/start_button.png")
 
-# Configure the row and 5 columns for the MTG buttons. 
+# Configure the row and 5 columns for the buttons. 
 Grid.rowconfigure(window,0,weight=1)
+Grid.rowconfigure(window,1,weight=1)
 Grid.columnconfigure(window,0,weight=1)
 Grid.columnconfigure(window,1,weight=1)
 Grid.columnconfigure(window,2,weight=1)
@@ -49,6 +51,9 @@ red = Button(window,
 green = Button(window,
                  image=green_button,
                  command=lambda: colorChoice("g"))
+
+start = Button(window,
+                 image=start_button)
 
 def colorChoice(choice):
     global white_var
@@ -114,5 +119,7 @@ red.grid(row=0,
              column=3)
 green.grid(row=0,
              column=4)
+start.grid(row=1,
+           column=2)
 
 window.mainloop()

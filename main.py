@@ -5,10 +5,6 @@ window.title("EDH Staple Compiler")
 
 window.geometry('1280x720')
 
-# canvas = Canvas(window, width= 1000, height= 750, bg="#B2C248")
-# canvas.create_text(300, 50, text="HELLO WORLD", fill="black", font=('Helvetica 15 bold'))
-# canvas.pack()
-
 # "Please select which colors are included in your deck below"
 
 white_button = PhotoImage(file="button_images/white.png")

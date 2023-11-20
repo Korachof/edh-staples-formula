@@ -24,7 +24,6 @@ Grid.columnconfigure(window,3,weight=1)
 Grid.columnconfigure(window,4,weight=1)
 
 # check button variables
-
 white_var = 0
 blue_var = 0
 black_var = 0

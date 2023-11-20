@@ -5,6 +5,7 @@ from staple_cards import Staples
 # Global variables to use in the tests
 test_card1 = Staples("Mana Vault", "Colorless", "Artifact")
 test_card2 = Staples("Rampant Growth", "Green", "Sorcery")
+test_card3 = Staples("Brainstorm", "Blue", "Instant")
 
 
 class TestStaplesGetsAndSets(unittest.TestCase):
@@ -30,9 +31,9 @@ class TestStaplesGetsAndSets(unittest.TestCase):
         """test to verify get_type returns correctly"""
         global test_card1
         
-        type = "Artifact"
+        cardType = "Artifact"
         
-        self.assertEqual(test_card1.get_type(), type)
+        self.assertEqual(test_card1.get_type(), cardType)
         
     def test_set_name_true(self):
         """Test to verify that set_name returns True"""
@@ -88,6 +89,21 @@ class TestStaplesGetsAndSets(unittest.TestCase):
         test_card2.set_type(cardType)
 
         self.assertEqual(test_card2.get_type(), cardType)
+        
+    def test_all_sets_and_gets(self):
+        """Test to verify that all sets and gets are called correctly"""
+        
+        global test_card3
+        
+        test_card3.set_name("Liliana of the Veil")
+        test_card3.set_color("Black")
+        test_card3.set_type("Planeswalker")
+        
+        card_string = test_card3.get_name() + "; " + test_card3.get_color() + "; " + test_card3.get_type()
+        
+        compare_string = "Liliana of the Veil; Black; Planeswalker"
+        
+        self.assertEqual(card_string, compare_string)
         
         
 if __name__ == '__main__':

@@ -115,6 +115,8 @@ red.grid(row=0,
              column=3)
 green.grid(row=0,
              column=4)
+
+# Set the grid for the start button
 start.grid(row=1,
            column=2)
 

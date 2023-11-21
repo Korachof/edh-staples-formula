@@ -1,4 +1,4 @@
-from re import I
+
 
 
 class Staples:

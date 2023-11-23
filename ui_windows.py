@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import *
+from turtle import bgcolor
 
 
 # class UI(tk.Tk):
@@ -32,24 +33,41 @@ class StartPage(tk.Tk):
         self.title("MTG Staple Compiler")
         self.geometry("1280x720")
         
+        # create the button images 
+        self.start_button = PhotoImage(file="button_images/start_button.png")  
+        
         # Configure the row and 5 columns for the buttons. 
         Grid.rowconfigure(self,0,weight=1)
         Grid.rowconfigure(self,1,weight=1)
         Grid.rowconfigure(self,2,weight=1)
+        Grid.rowconfigure(self,3,weight=1)
+        Grid.rowconfigure(self,4,weight=1)
+        Grid.rowconfigure(self,5,weight=1)
         Grid.columnconfigure(self,0,weight=1)
         Grid.columnconfigure(self,1,weight=1)
         Grid.columnconfigure(self,2,weight=1)
         Grid.columnconfigure(self,3,weight=1)
         Grid.columnconfigure(self,4,weight=1)
         
-        self.welcome_label = ttk.Label(self, text="Welcome to the MTG Staple Compiler")
-        self.choose_label = ttk.Label(self, text="Please choose from the options below")
+        self.welcome_label = tk.Label(self, text="Welcome to the MTG Staple Compiler")
+        self.choose_label = tk.Label(self, text="Please choose from the options below")
+        
+        
+        self.start = tk.Button(self,
+                 image=self.start_button)
+        self.color_choice = tk.Button(self, text="Choose Deck Colors", bg="#2f9fd6", fg="white", activebackground="#146d99", activeforeground="white")
+        
+        self.custom_list = tk.Button(self, text="Create Custom Staples List", bg="#2f9fd6", fg="white", activebackground="#146d99", activeforeground="white")
+        
+        self.exit_button = tk.Button(self, text="Exit", bg="#2f9fd6", fg="white", activebackground="#146d99", activeforeground="white")
         
         # configure buttons
-        
-
-        self.welcome_label.grid(row=0, column=0, padx=1, pady=1)
-        self.choose_label.grid(row=1, column=0, padx=1, pady=1)
+        self.welcome_label.grid(row=0, column=2, padx=1, pady=1)
+        self.choose_label.grid(row=1, column=2, padx=1, pady=1)
+        self.start.grid(row=2, column=2, padx=1, pady=1)
+        self.color_choice.grid(row=3, column=2, padx=1, pady=1, sticky="S")
+        self.custom_list.grid(row=4, column=2, padx=1, pady=1, sticky="N")
+        self.exit_button.grid(row=5, column=2, padx=1, pady=1, sticky="N")
         
 
     

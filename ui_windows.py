@@ -51,23 +51,33 @@ class StartPage(tk.Tk):
         
         self.welcome_label = tk.Label(self, text="Welcome to the MTG Staple Compiler")
         self.choose_label = tk.Label(self, text="Please choose from the options below")
-        
-        
         self.start = tk.Button(self,
                  image=self.start_button)
-        self.color_choice = tk.Button(self, text="Choose Deck Colors", bg="#2f9fd6", fg="white", activebackground="#146d99", activeforeground="white")
+       
+
+        self.options_frame = tk.Frame(self)
+        self.options_frame.grid(row=3, column=2, padx=1, pady=1)
         
-        self.custom_list = tk.Button(self, text="Create Custom Staples List", bg="#2f9fd6", fg="white", activebackground="#146d99", activeforeground="white")
+        self.color_choice = tk.Button(self.options_frame, text="Choose Deck Colors", bg="#2f9fd6", fg="white", activebackground="#146d99", activeforeground="white")
         
-        self.exit_button = tk.Button(self, text="Exit", bg="#2f9fd6", fg="white", activebackground="#146d99", activeforeground="white")
+        self.custom_list = tk.Button(self.options_frame, text="Create Custom Staples List", bg="#2f9fd6", fg="white", activebackground="#146d99", activeforeground="white")
+        
+        self.exit_button = tk.Button(self.options_frame, text="Exit", bg="#2f9fd6", fg="white", activebackground="#146d99", activeforeground="white")
+        
+        self.color_choice.grid(row=0, column=0, padx=1, pady=2, sticky="WES")
+        self.custom_list.grid(row=1, column=0, padx=1, pady=2, sticky="WEN")
+        self.exit_button.grid(row=2, column=0, padx=1, pady=2, sticky="WEN")
         
         # configure buttons
+        
         self.welcome_label.grid(row=0, column=2, padx=1, pady=1)
         self.choose_label.grid(row=1, column=2, padx=1, pady=1)
         self.start.grid(row=2, column=2, padx=1, pady=1)
-        self.color_choice.grid(row=3, column=2, padx=1, pady=1, sticky="S")
-        self.custom_list.grid(row=4, column=2, padx=1, pady=1, sticky="N")
-        self.exit_button.grid(row=5, column=2, padx=1, pady=1, sticky="N")
+        
+        
+        
+        
+        
         
 
     

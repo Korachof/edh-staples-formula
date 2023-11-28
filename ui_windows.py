@@ -26,13 +26,24 @@ from turtle import bgcolor
 #             frame = window(ui_frame, self)
             
 
-class StartPage(tk.Tk):
+class WindowScreen(tk.Tk):
     def __init__(self):
         super().__init__()
         
         self.title("MTG Staple Compiler")
         self.geometry("1280x720")
         
+        Grid.rowconfigure(self,0,weight=1)
+        Grid.columnconfigure(self,0,weight=1)
+        
+        self.frame = StartPage()
+        
+        self.frame.grid(row=0, column=0)
+        
+        
+class StartPage(tk.Frame):
+    def __init__(self):
+        super().__init__()
         # create the button images 
         self.start_button = PhotoImage(file="button_images/start_button.png")  
         
@@ -52,7 +63,7 @@ class StartPage(tk.Tk):
         self.welcome_label = tk.Label(self, text="Welcome to the MTG Staple Compiler")
         self.choose_label = tk.Label(self, text="Please choose from the options below")
         self.start = tk.Button(self,
-                 image=self.start_button)
+                    image=self.start_button)
        
 
         self.options_frame = tk.Frame(self)
@@ -74,13 +85,6 @@ class StartPage(tk.Tk):
         self.choose_label.grid(row=1, column=2, padx=1, pady=1)
         self.start.grid(row=2, column=2, padx=1, pady=1)
         
-        
-        
-        
-        
-        
-
-    
 
 class MakeAccountPage:
     pass
@@ -100,5 +104,5 @@ class DownloadPage:
 
 
 if __name__ == "__main__":
-    testObj = StartPage()
+    testObj = WindowScreen()
     testObj.mainloop()

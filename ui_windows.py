@@ -69,11 +69,29 @@ class StartPage(tk.Frame):
         self.options_frame = tk.Frame(self)
         self.options_frame.grid(row=3, column=2, padx=1, pady=1)
         
-        self.color_choice = tk.Button(self.options_frame, text="Choose Deck Colors", bg="#2f9fd6", fg="white", activebackground="#146d99", activeforeground="white")
+        self.color_choice = tk.Button(self.options_frame, 
+                                      text="Choose Deck Colors", 
+                                      bg="#2f9fd6", fg="white", 
+                                      activebackground="#146d99", 
+                                      activeforeground="white", 
+                                      font="Garamond")
         
-        self.custom_list = tk.Button(self.options_frame, text="Create Custom Staples List", bg="#2f9fd6", fg="white", activebackground="#146d99", activeforeground="white")
+        self.custom_list = tk.Button(self.options_frame, 
+                                     text="Create Custom Staples List", 
+                                     bg="#2f9fd6", 
+                                     fg="white", 
+                                     activebackground="#146d99", 
+                                     activeforeground="white", 
+                                     font="Garamond")
         
-        self.exit_button = tk.Button(self.options_frame, text="Exit", bg="#2f9fd6", fg="white", activebackground="#146d99", activeforeground="white", command=sys.exit)
+        self.exit_button = tk.Button(self.options_frame,
+                                     text="Exit",
+                                     bg="#2f9fd6",
+                                     fg="white", 
+                                     activebackground="#146d99", 
+                                     activeforeground="white",
+                                     font="Garamond", 
+                                     command=sys.exit)
         
         self.color_choice.grid(row=0, column=0, padx=1, pady=2, sticky="WES")
         self.custom_list.grid(row=1, column=0, padx=1, pady=2, sticky="WEN")

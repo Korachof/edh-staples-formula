@@ -1,8 +1,6 @@
 import tkinter as tk
-from tkinter import ttk
 from tkinter import *
-from turtle import bgcolor
-
+import sys
 
 # class UI(tk.Tk):
 #     def __init__(self, *args, **kwargs):
@@ -35,6 +33,8 @@ class WindowScreen(tk.Tk):
         
         Grid.rowconfigure(self,0,weight=1)
         Grid.columnconfigure(self,0,weight=1)
+        
+        self.frame_hash = {1: StartPage(), 2: ColorSelectPage()}
         
         self.frame = StartPage()
         
@@ -73,7 +73,7 @@ class StartPage(tk.Frame):
         
         self.custom_list = tk.Button(self.options_frame, text="Create Custom Staples List", bg="#2f9fd6", fg="white", activebackground="#146d99", activeforeground="white")
         
-        self.exit_button = tk.Button(self.options_frame, text="Exit", bg="#2f9fd6", fg="white", activebackground="#146d99", activeforeground="white")
+        self.exit_button = tk.Button(self.options_frame, text="Exit", bg="#2f9fd6", fg="white", activebackground="#146d99", activeforeground="white", command=sys.exit)
         
         self.color_choice.grid(row=0, column=0, padx=1, pady=2, sticky="WES")
         self.custom_list.grid(row=1, column=0, padx=1, pady=2, sticky="WEN")

@@ -34,18 +34,22 @@ class WindowScreen(tk.Tk):
         Grid.rowconfigure(self,0,weight=1)
         Grid.columnconfigure(self,0,weight=1)
         self.frame_hash = {0: StartPage, 1: ColorSelectPage}
-        self.frame = self.create_frame(0)
+        self.current_window = 0
+        self.button_command = self.frame_hash[self.current_window]
+        self.frame = self.create_frame(self.current_window)
+        
 
     def create_frame(self, buttonNum):
-        button_command = self.frame_hash[buttonNum]
-        button_command.tkraise(self)
-        self.frame = button_command(self.frame_hash, self)
+        for widgets in self.button_command.winfo_children(self):
+            widgets.destroy()
+        self.current_window = buttonNum
+        self.button_command = self.frame_hash[buttonNum]
+        self.button_command.tkraise(self)
+        
+        self.frame = self.button_command(self.frame_hash, self)
         
         self.frame.grid(row=0, column=0)
    
-        return button_command
-        
-        
         
 class StartPage(tk.Frame):
     def __init__(self, frameHash, mainWindow):
@@ -117,8 +121,10 @@ class StartPage(tk.Frame):
 class MakeAccountPage:
     pass
 
+
 class EditAccountPage:
     pass
+
 
 class ColorSelectPage(tk.Frame):
     def __init__(self, frameHash, mainWindow):
@@ -130,18 +136,27 @@ class ColorSelectPage(tk.Frame):
         self.start_button = PhotoImage(file="button_images/start_button.png")
         
         # Configure the row and 5 columns for the buttons. 
+        # Configure the row and 5 columns for the buttons. 
         Grid.rowconfigure(self,0,weight=1)
         Grid.rowconfigure(self,1,weight=1)
+        Grid.rowconfigure(self,2,weight=1)
+        Grid.rowconfigure(self,3,weight=1)
+        Grid.rowconfigure(self,4,weight=1)
+        Grid.rowconfigure(self,5,weight=1)
         Grid.columnconfigure(self,0,weight=1)
         Grid.columnconfigure(self,1,weight=1)
+        Grid.columnconfigure(self,2,weight=1)
+        Grid.columnconfigure(self,3,weight=1)
+        Grid.columnconfigure(self,4,weight=1)
         
         self.select_color_label = tk.Label(self, text="Please select all the colors of your deck below")
         
-        self.select_color_label.grid(row=0, column=0, padx=1, pady=1)
-        
+        self.select_color_label.grid(row=0, column=2, padx=1, pady=1)
+
 
 class ResultsPage:
     pass
+
 
 class DownloadPage:
     pass

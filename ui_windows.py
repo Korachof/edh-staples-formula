@@ -34,14 +34,17 @@ class WindowScreen(tk.Tk):
         Grid.rowconfigure(self,0,weight=1)
         Grid.columnconfigure(self,0,weight=1)
         self.frame_hash = {0: StartPage, 1: ColorSelectPage}
-        self.create_frame(0)
+        self.frame = self.create_frame(0)
 
     def create_frame(self, buttonNum):
         button_command = self.frame_hash[buttonNum]
-        
+        button_command.tkraise(self)
         self.frame = button_command(self.frame_hash, self)
         
         self.frame.grid(row=0, column=0)
+   
+        return button_command
+        
         
         
 class StartPage(tk.Frame):
@@ -49,6 +52,7 @@ class StartPage(tk.Frame):
         super().__init__()
         self.frameHash = frameHash
         self.mainWindow = mainWindow
+        self.label = tk.Label(self, text="Main Page")
         # create the button images 
         self.start_button = PhotoImage(file="button_images/start_button.png")  
         
@@ -121,10 +125,20 @@ class ColorSelectPage(tk.Frame):
         super().__init__()
         self.frameHash = frameHash
         self.mainWindow = mainWindow
+        self.label = tk.Label(self, text="Color Select Page")
         # create the button images 
         self.start_button = PhotoImage(file="button_images/start_button.png")
         
-        self.mainWindow.frame.grid(row=0,column=0)
+        # Configure the row and 5 columns for the buttons. 
+        Grid.rowconfigure(self,0,weight=1)
+        Grid.rowconfigure(self,1,weight=1)
+        Grid.columnconfigure(self,0,weight=1)
+        Grid.columnconfigure(self,1,weight=1)
+        
+        self.select_color_label = tk.Label(self, text="Please select all the colors of your deck below")
+        
+        self.select_color_label.grid(row=0, column=0, padx=1, pady=1)
+        
 
 class ResultsPage:
     pass

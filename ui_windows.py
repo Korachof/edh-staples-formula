@@ -33,17 +33,22 @@ class WindowScreen(tk.Tk):
         
         Grid.rowconfigure(self,0,weight=1)
         Grid.columnconfigure(self,0,weight=1)
+        self.frame_hash = {0: StartPage, 1: ColorSelectPage}
+        self.create_frame(0)
+
+    def create_frame(self, buttonNum):
+        button_command = self.frame_hash[buttonNum]
         
-        self.frame_hash = {1: StartPage(), 2: ColorSelectPage()}
-        
-        self.frame = StartPage()
+        self.frame = button_command(self.frame_hash, self)
         
         self.frame.grid(row=0, column=0)
         
         
 class StartPage(tk.Frame):
-    def __init__(self):
+    def __init__(self, frameHash, mainWindow):
         super().__init__()
+        self.frameHash = frameHash
+        self.mainWindow = mainWindow
         # create the button images 
         self.start_button = PhotoImage(file="button_images/start_button.png")  
         
@@ -74,7 +79,8 @@ class StartPage(tk.Frame):
                                       bg="#2f9fd6", fg="white", 
                                       activebackground="#146d99", 
                                       activeforeground="white", 
-                                      font="Garamond")
+                                      font="Garamond",
+                                      command=lambda: self.mainWindow.create_frame(1))
         
         self.custom_list = tk.Button(self.options_frame, 
                                      text="Create Custom Staples List", 
@@ -110,8 +116,15 @@ class MakeAccountPage:
 class EditAccountPage:
     pass
 
-class ColorSelectPage:
-    pass
+class ColorSelectPage(tk.Frame):
+    def __init__(self, frameHash, mainWindow):
+        super().__init__()
+        self.frameHash = frameHash
+        self.mainWindow = mainWindow
+        # create the button images 
+        self.start_button = PhotoImage(file="button_images/start_button.png")
+        
+        self.mainWindow.frame.grid(row=0,column=0)
 
 class ResultsPage:
     pass

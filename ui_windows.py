@@ -128,7 +128,7 @@ class EditAccountPage:
     pass
 
 
-class ColorSelectPage(tk.Frame):
+class ResultsPage(tk.Frame):
     def __init__(self, frameHash, mainWindow):
         super().__init__()
         self.frameHash = frameHash
@@ -167,7 +167,7 @@ class ColorSelectPage(tk.Frame):
         self.exit_button.grid(row=5, column=2)
 
 
-class ResultsPage(tk.Frame):
+class ColorSelectPage(tk.Frame):
     def __init__(self, frameHash, mainWindow):
         super().__init__()
         self.frameHash = frameHash
@@ -194,6 +194,7 @@ class ResultsPage(tk.Frame):
         Grid.rowconfigure(self,2,weight=1)
         Grid.rowconfigure(self,3,weight=1)
         Grid.rowconfigure(self,4,weight=1)
+        Grid.rowconfigure(self,5,weight=1)
         Grid.columnconfigure(self,0,weight=1)
         Grid.columnconfigure(self,1,weight=1)
         Grid.columnconfigure(self,2,weight=1)
@@ -226,6 +227,26 @@ class ResultsPage(tk.Frame):
         self.green = Button(self.options_frame,
                          image=self.green_button,
                          command=lambda: self.color_choice("g"))
+        
+        # set menu option buttons 
+
+        self.return_to_start_button = tk.Button(self,
+                                                text="Return to the Main Menu",
+                                                bg="#2f9fd6",
+                                                fg="white", 
+                                                activebackground="#146d99", 
+                                                activeforeground="white",
+                                                font="Garamond",
+                                                command=lambda: self.mainWindow.create_frame(0))
+
+        self.exit_button = tk.Button(self,
+                                     text="Exit",
+                                     bg="#2f9fd6",
+                                     fg="white", 
+                                     activebackground="#146d99", 
+                                     activeforeground="white",
+                                     font="Garamond", 
+                                     command=sys.exit)
 
         self.start = Button(self,
                          image=self.start_button)
@@ -252,11 +273,16 @@ class ResultsPage(tk.Frame):
         self.green.grid(row=1,
                         column=4,
                         padx=2)
+        
+        # Set the grid for the Return to Main Menu button
+        self.return_to_start_button.grid(row=4,
+                                         column=2,
+                                         sticky="SWE")
 
-        # Set the grid for the start button
-        self.start.grid(row=4,
+        # Set the grid for the exit button
+        self.exit_button.grid(row=5,
                    column=2,
-                   sticky="S")
+                   sticky="SWE")
 
     def color_choice(self, choice):
         if choice == "w":

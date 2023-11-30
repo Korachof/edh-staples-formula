@@ -33,7 +33,7 @@ class WindowScreen(tk.Tk):
         
         Grid.rowconfigure(self,0,weight=1)
         Grid.columnconfigure(self,0,weight=1)
-        self.frame_hash = {0: StartPage, 1: ColorSelectPage}
+        self.frame_hash = {0: StartPage, 1: ColorSelectPage, 2: ResultsPage}
         self.current_window = 0
         self.button_command = self.frame_hash[self.current_window]
         self.frame = self.create_frame(self.current_window)
@@ -84,7 +84,8 @@ class StartPage(tk.Frame):
         
         self.color_choice = tk.Button(self.options_frame, 
                                       text="Choose Deck Colors", 
-                                      bg="#2f9fd6", fg="white", 
+                                      bg="#2f9fd6",
+                                      fg="white", 
                                       activebackground="#146d99", 
                                       activeforeground="white", 
                                       font="Garamond",
@@ -96,7 +97,8 @@ class StartPage(tk.Frame):
                                      fg="white", 
                                      activebackground="#146d99", 
                                      activeforeground="white", 
-                                     font="Garamond")
+                                     font="Garamond",
+                                     command=lambda: self.mainWindow.create_frame(2))
         
         self.exit_button = tk.Button(self.options_frame,
                                      text="Exit",
@@ -134,7 +136,7 @@ class ColorSelectPage(tk.Frame):
         self.label = tk.Label(self, text="Color Select Page")
         # create the button images 
         self.start_button = PhotoImage(file="button_images/start_button.png")
-        
+
         # Configure the row and 5 columns for the buttons. 
         # Configure the row and 5 columns for the buttons. 
         Grid.rowconfigure(self,0,weight=1)
@@ -148,14 +150,159 @@ class ColorSelectPage(tk.Frame):
         Grid.columnconfigure(self,2,weight=1)
         Grid.columnconfigure(self,3,weight=1)
         Grid.columnconfigure(self,4,weight=1)
-        
+
         self.select_color_label = tk.Label(self, text="Please select all the colors of your deck below")
+        self.test_grid_label = tk.Label(self, text="I'm testing how this silly grid really works, dawg")
+        self.exit_button = tk.Button(self,
+                                     text="Exit",
+                                     bg="#2f9fd6",
+                                     fg="white", 
+                                     activebackground="#146d99", 
+                                     activeforeground="white",
+                                     font="Garamond", 
+                                     command=sys.exit)
+
+        self.test_grid_label.grid(row=1, column=1)
+        self.select_color_label.grid(row=2, column=2, padx=1, pady=1)
+        self.exit_button.grid(row=5, column=2)
+
+
+class ResultsPage(tk.Frame):
+    def __init__(self, frameHash, mainWindow):
+        super().__init__()
+        self.frameHash = frameHash
+        self.mainWindow = mainWindow
+        self.label = tk.Label(self, text="Color Select Page 2")
         
-        self.select_color_label.grid(row=0, column=2, padx=1, pady=1)
+        # text label
+        self.directions_label = tk.Label(self, text="Please select each button that represents your commander's color identity below.", font="Garamond")
+        self.directions_label2 = tk.Label(self, text="Once finished, select the Staples List you would like to use from the dropdown menu.", font="Garamond")
+        self.directions_label3 = tk.Label(self, text="Then press Start", font="Garamond")
+        
+        # "Please select which colors are included in your deck below"
+        self.white_button = PhotoImage(file="button_images/white.png")
+        self.blue_button = PhotoImage(file="button_images/blue.png")
+        self.black_button = PhotoImage(file="button_images/black.png")
+        self.red_button = PhotoImage(file="button_images/red.png")
+        self.green_button = PhotoImage(file="button_images/green.png")
+        
+        self.start_button = PhotoImage(file="button_images/start_button.png")
 
+        # Configure the row and 5 columns for the buttons. 
+        Grid.rowconfigure(self,0,weight=1)
+        Grid.rowconfigure(self,1,weight=1)
+        Grid.rowconfigure(self,2,weight=1)
+        Grid.rowconfigure(self,3,weight=1)
+        Grid.rowconfigure(self,4,weight=1)
+        Grid.columnconfigure(self,0,weight=1)
+        Grid.columnconfigure(self,1,weight=1)
+        Grid.columnconfigure(self,2,weight=1)
+        Grid.columnconfigure(self,3,weight=1)
+        Grid.columnconfigure(self,4,weight=1)
 
-class ResultsPage:
-    pass
+        # check button variables
+        self.white_var = 0
+        self.blue_var = 0
+        self.black_var = 0
+        self.red_var = 0
+        self.green_var = 0
+
+        self.options_frame = tk.Frame(self)
+        self.options_frame.grid(row=3, column=2, padx=1, pady=20, sticky="S")
+
+        # Set the MTG color buttons
+        self.white = Button(self.options_frame,
+                         image=self.white_button,
+                         command=lambda: self.color_choice("w"))
+        self.blue = Button(self.options_frame,
+                         image=self.blue_button,
+                         command=lambda: self.color_choice("u"))
+        self.black = Button(self.options_frame,
+                         image=self.black_button,
+                         command=lambda: self.color_choice("b"))
+        self.red = Button(self.options_frame,
+                         image=self.red_button,
+                         command=lambda: self.color_choice("r"))
+        self.green = Button(self.options_frame,
+                         image=self.green_button,
+                         command=lambda: self.color_choice("g"))
+
+        self.start = Button(self,
+                         image=self.start_button)
+        
+
+        # Set the grid for the instructions
+        self.directions_label.grid(row=0, column=2, columnspan=5)
+        self.directions_label2.grid(row=1, column=2, columnspan=5)
+        self.directions_label3.grid(row=2, column=2, columnspan=5)
+        
+        # Set the grid for each of the MTG color buttons
+        self.white.grid(row=1,
+                        column=0,
+                        padx=2)
+        self.blue.grid(row=1,
+                        column=1,
+                        padx=2)
+        self.black.grid(row=1,
+                        column=2,
+                        padx=2)
+        self.red.grid(row=1,
+                        column=3,
+                        padx=2)
+        self.green.grid(row=1,
+                        column=4,
+                        padx=2)
+
+        # Set the grid for the start button
+        self.start.grid(row=4,
+                   column=2,
+                   sticky="S")
+
+    def color_choice(self, choice):
+        if choice == "w":
+            if self.white_var == 0:
+                self.white_var += 1
+                self.white.config(relief=SUNKEN, bg="grey")
+            
+            else:
+                self.white_var -= 1
+                self.white.config(relief=RAISED, bg="white")
+    
+        elif choice == "u":
+            if self.blue_var == 0:
+                self.blue_var += 1
+                self.blue.config(relief=SUNKEN, bg="grey")
+            
+            else:
+                self.blue_var -= 1
+                self.blue.config(relief=RAISED, bg="white")
+            
+        elif choice == "b":
+            if self.black_var == 0:
+                self.black_var += 1
+                self.black.config(relief=SUNKEN, bg="grey")
+            
+            else:
+                self.black_var -= 1
+                self.black.config(relief=RAISED, bg="white")
+            
+        elif choice == "r":
+            if self.red_var == 0:
+                self.red_var += 1
+                self.red.config(relief=SUNKEN, bg="grey")
+            
+            else:
+                self.red_var -= 1
+                self.red.config(relief=RAISED, bg="white")
+           
+        elif choice == "g":
+            if self.green_var == 0:
+                self.green_var += 1
+                self.green.config(relief=SUNKEN, bg="grey")
+            
+            else:
+                self.green_var -= 1
+                self.green.config(relief=RAISED, bg="white")
 
 
 class DownloadPage:

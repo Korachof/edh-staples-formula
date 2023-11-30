@@ -240,7 +240,7 @@ class ColorSelectPage(tk.Frame):
         self.staple_menu_options = OptionMenu(self, self.staple_menu, *self.staple_options)
         self.staple_menu_options.config(bg="#2f9fd6", fg="white", font="Garamond")
 
-        self.staple_menu_options.grid(row=6, column = 2)
+        self.staple_menu_options.grid(row=6, column = 2, sticky="SWE")
         
         # set menu option buttons 
 

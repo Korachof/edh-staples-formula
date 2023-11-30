@@ -195,6 +195,7 @@ class ColorSelectPage(tk.Frame):
         Grid.rowconfigure(self,3,weight=1)
         Grid.rowconfigure(self,4,weight=1)
         Grid.rowconfigure(self,5,weight=1)
+        Grid.rowconfigure(self,6,weight=1)
         Grid.columnconfigure(self,0,weight=1)
         Grid.columnconfigure(self,1,weight=1)
         Grid.columnconfigure(self,2,weight=1)
@@ -227,6 +228,19 @@ class ColorSelectPage(tk.Frame):
         self.green = Button(self.options_frame,
                          image=self.green_button,
                          command=lambda: self.color_choice("g"))
+        
+        # set dropdown menu
+        
+        self.staple_options = ["Mighty Joe Young",
+                               "Cobra Kai"]
+        
+        self.staple_menu = StringVar(self)
+        self.staple_menu.set(self.staple_options[0])
+
+        self.staple_menu_options = OptionMenu(self, self.staple_menu, *self.staple_options)
+        self.staple_menu_options.config(bg="#2f9fd6", fg="white", font="Garamond")
+
+        self.staple_menu_options.grid(row=6, column = 2)
         
         # set menu option buttons 
 
